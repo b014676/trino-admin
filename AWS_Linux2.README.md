@@ -8,29 +8,27 @@
 
         $ git clone git@github.com:your_name_here/presto-admin.git
 
-3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development ::
+2. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development ::
 
         $ cd prestoadmin/
         $ python setup.py develop
 
 
 
-5. When you're done making changes, check that your changes pass `make clean lint test`, which runs flake8 and the unit tests (which test both Python 2.6 and 2.7)
-
 
 ### Building the installer
  
         $ make dist-offline
 
-        # Add current user to Docker group to run without sudo
-        $ sudo gpasswd -a ${USER} docker
-        $ sudo service docker restart
    
 #### Install presto admin 
 
         $ tar xvf prestoadmin-<version>-offline.tar.gz
         $ cd prestoadmin
-        $ ./install-prestoadmin.sh   ( the last action of install prestoadmin-2.12-py2-none-any might fail, is so process to next step.)
+        $ ./install-prestoadmin.sh   
+
+( the last action of install prestoadmin-2.12-py2-none-any might fail, if so process to next step.)
+
         $ pip install prestoadmin-2.12-py2-none-any.whl
         
 ##### Config presto-admin
