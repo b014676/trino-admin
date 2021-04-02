@@ -1,4 +1,4 @@
-# For dev setup in AWS linux2
+## For dev setup in AWS linux2
 
             $ sudo yum install gcc python2-pip.noarch
 
@@ -16,12 +16,12 @@
 
 
 
-### Building the installer
+## Building the installer
  
         $ make dist-offline
 
    
-#### Install presto admin 
+## Install presto-admin 
 
         $ tar xvf prestoadmin-<version>-offline.tar.gz
         $ cd prestoadmin
@@ -31,7 +31,7 @@
 
         $ pip install prestoadmin-2.12-py2-none-any.whl
         
-##### Config presto-admin
+## Config presto-admin
 
 1. run prestoadmin
 
