@@ -51,7 +51,7 @@ from prestoadmin.util.version_util import VersionRange, VersionRangeList, \
 __all__ = ['install', 'uninstall', 'upgrade', 'start', 'stop', 'restart',
            'status']
 
-INIT_SCRIPTS = '/etc/init.d/presto'
+INIT_SCRIPTS = 'service presto-server.service'
 RETRY_TIMEOUT = 120
 SYSTEM_RUNTIME_NODES = 'select * from system.runtime.nodes'
 
@@ -434,6 +434,8 @@ def uninstall():
 
     if package.is_rpm_installed('presto'):
         package.rpm_uninstall('presto')
+    elif package.is_rpm_installed('prestosql'):
+        package.rpm_uninstall('prestosql')    
     elif package.is_rpm_installed('presto-server'):
         package.rpm_uninstall('presto-server')
     elif package.is_rpm_installed('presto-server-rpm'):
@@ -592,6 +594,8 @@ def presto_installed():
     with settings(hide('warnings', 'stdout'), warn_only=True):
         package_search = run('rpm -q presto')
         if not package_search.succeeded:
+            package_search = run('rpm -q prestosql')
+        if not package_search.succeeded:
             package_search = run('rpm -q presto-server-rpm')
         if not package_search.succeeded:
             package_search = run('rpm -q starburst-presto-server-rpm')
@@ -602,6 +606,8 @@ def get_presto_version():
     with settings(hide('warnings', 'stdout'), warn_only=True):
         version = run('rpm -q --qf \"%{VERSION}\\n\" presto')
         # currently we have two rpm names out so we need this retry
+        if not version.succeeded:
+            version = run('rpm -q --qf \"%{VERSION}\\n\" prestosql')
         if not version.succeeded:
             version = run('rpm -q --qf \"%{VERSION}\\n\" presto-server-rpm')
         if not version.succeeded:

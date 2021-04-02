@@ -38,7 +38,7 @@ WORKERS_DIR_NAME = 'workers'
 CATALOG_DIR_NAME = 'catalog'
 
 # remote configuration
-REMOTE_CONF_DIR = '/etc/presto'
+REMOTE_CONF_DIR = '/etc/presto/conf'
 REMOTE_CATALOG_DIR = os.path.join(REMOTE_CONF_DIR, 'catalog')
 REMOTE_PACKAGES_PATH = '/opt/prestoadmin/packages'
 DEFAULT_PRESTO_SERVER_LOG_FILE = '/var/log/presto/server.log'
